@@ -1,0 +1,18 @@
+[package]
+name = "t-cmd"
+version = "0.1.0"
+description = "CLI utility to measure CPU time and RSS of a process"
+categories = ["command-line-utilities", "development-tools::profiling"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/matklad/t-cmd"
+authors = ["Aleksey Kladov <aleksey.kladov@gmail.com>"]
+edition = "2021"
+
+exclude = [".github/", "bors.toml", "rustfmt.toml"]
+
+[workspace]
+members = ["xtask"]
+
+[[bin]]
+path = "src/main.rs"
+name = "t"
