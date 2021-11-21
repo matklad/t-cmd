@@ -10,15 +10,14 @@ fn main() {
 fn try_main() -> Result<(), String> {
     let mut args = std::env::args_os();
     args.next();
-    let progn = args.next().ok_or_else(|| format!("missing program name"))?;
+    let progn = args.next().ok_or_else(|| "missing program name".to_string())?;
+    let mut cmd = Command::new(progn);
+    cmd.args(args);
     let t = Instant::now();
-    let status = Command::new(progn)
-        .args(args)
-        .status()
-        .map_err(|err| format!("failed to run command: {}", err))?;
+    let status = cmd.status().map_err(|err| format!("failed to run command: {}", err))?;
     let real_time = t.elapsed();
 
-    let ru = rusage::children().map_err(|()| format!("failed to get rusage"))?;
+    let ru = rusage::children().map_err(|()| "failed to get rusage".to_string())?;
 
     eprintln!(
         "
@@ -34,7 +33,7 @@ rss  {:.2}mb",
     if !status.success() {
         return Err(match status.code() {
             Some(code) => format!("\ncommand exited with non-zero code: {}", code),
-            None => format!("\ncommand was terminated by signal"),
+            None => "\ncommand was terminated by signal".to_string(),
         });
     }
     Ok(())
