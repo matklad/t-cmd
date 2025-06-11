@@ -97,7 +97,7 @@ mod rusage {
         Ok(ResourceUsage {
             sys_cpu: ru.ru_stime.into(),
             user_cpu: ru.ru_utime.into(),
-            max_rss_bytes: ru.ru_maxrss as u64 * 1024,
+            max_rss_bytes: ru.ru_maxrss as u64 * if cfg!(target_os = "macos") { 1 } else { 1024 },
         })
     }
 }

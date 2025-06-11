@@ -1,6 +1,6 @@
 [package]
 name = "t-cmd"
-version = "0.1.0"
+version = "0.1.1"
 description = "CLI utility to measure CPU time and RSS of a process"
 categories = ["command-line-utilities", "development-tools::profiling"]
 license = "MIT OR Apache-2.0"
