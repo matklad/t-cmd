@@ -5,4 +5,4 @@ publish = false
 edition = "2018"
 
 [dependencies]
-xaction = "0.2"
+xshell = "0.3.0-pre.2"
